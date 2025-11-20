@@ -7,4 +7,4 @@
 #include <stdint.h>
 
 
-#endif //COMMON_H_
+#endif // COMMON_H_
