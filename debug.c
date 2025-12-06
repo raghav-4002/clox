@@ -12,6 +12,10 @@ simple_instruction(const char *name, int offset)
 }
 
 
+/*
+    Print the particular byte instruction of
+    `chunk` array
+*/
 int
 disassemble_instruction(Chunk *chunk, int offset)
 {
@@ -28,6 +32,10 @@ disassemble_instruction(Chunk *chunk, int offset)
 }
 
 
+/*
+    Disassemble the `chunk` array, printing all the
+    instructions
+*/
 void
 disassemble_chunk(Chunk *chunk, const char *name)
 {

@@ -5,11 +5,18 @@
 #include "common.h"
 
 
+/*
+    Instructions for the bytecode VM
+*/
 typedef enum
 {
     OP_RETURN,
 } Op_code;
 
+/*
+    Chunk is just a memory region of bytes
+    with each byte consisting of some data
+*/
 typedef struct
 {
     int count;

@@ -4,6 +4,7 @@
 #include "memory.h"
 
 
+/* Initialize the chunk with default values */
 void
 init_chunk(Chunk *chunk)
 {
@@ -24,6 +25,8 @@ free_chunk(Chunk *chunk)
 void
 write_chunk(Chunk *chunk, uint8_t byte)
 {
+    /* If chunk capacity is not sufficient
+       then first increase that size */
     if (chunk->capacity < chunk->count + 1) {
         int old_capacity = chunk->capacity;
         chunk->capacity  = GROW_CAPACITY(old_capacity);
@@ -31,6 +34,6 @@ write_chunk(Chunk *chunk, uint8_t byte)
                             old_capacity, chunk->capacity);
     }
 
-    chunk->code[chunk->count] = byte;
+    chunk->code[chunk->count] = byte; /* Write into the chunk */
     chunk->count++;
 }
