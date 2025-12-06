@@ -3,31 +3,37 @@
 
 
 #include "common.h"
+#include "value.h"
 
 
 /*
     Instructions for the bytecode VM
 */
-typedef enum
+typedef enum Op_code
 {
+    OP_CONSTANT,
     OP_RETURN,
 } Op_code;
 
 /*
-    Chunk is just a memory region of bytes
-    with each byte consisting of some data
+    Chunk consists of instructions and data
+    on which instructions should work on
 */
-typedef struct
+typedef struct Chunk
 {
     int count;
     int capacity;
     uint8_t *code;
+
+    Value_array constants; /* structure that keeps record
+                              of constants in the bytecode*/
 } Chunk;
 
 
 void init_chunk(Chunk *chunk);
 void free_chunk(Chunk *chunk);
 void write_chunk(Chunk *chunk, uint8_t byte);
+int add_constant(Chunk *chunk, Value value);
 
 
 #endif // CHUNK_H_
