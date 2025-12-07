@@ -24,6 +24,8 @@ typedef struct Chunk
     int count;
     int capacity;
     uint8_t *code;
+    int *lines;   /* to store line number of each instruction
+                     for reporting errors */
 
     Value_array constants; /* structure that keeps record
                               of constants in the bytecode*/
@@ -32,7 +34,7 @@ typedef struct Chunk
 
 void init_chunk(Chunk *chunk);
 void free_chunk(Chunk *chunk);
-void write_chunk(Chunk *chunk, uint8_t byte);
+void write_chunk(Chunk *chunk, uint8_t byte, int line);
 int add_constant(Chunk *chunk, Value value);
 
 
