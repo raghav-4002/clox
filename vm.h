@@ -3,6 +3,10 @@
 
 
 #include "chunk.h"
+#include "value.h"
+
+
+#define STACK_MAX 256
 
 
 typedef struct Vm
@@ -16,6 +20,9 @@ typedef struct Vm
        than array index access
     */
     uint8_t *ip;   
+
+    Value stack[STACK_MAX];
+    Value *stack_top;
 } Vm;
 
 
@@ -30,6 +37,8 @@ typedef enum Interpret_result
 void init_vm();
 void free_vm();
 Interpret_result interpret(Chunk *chunk);
+void push(Value value);
+Value pop();
 
 
 #endif // VN_H_
