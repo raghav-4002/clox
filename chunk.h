@@ -12,6 +12,11 @@
 typedef enum Op_code
 {
     OP_CONSTANT,
+    OP_ADD,
+    OP_SUBTRACT,
+    OP_MULTIPLY,
+    OP_DIVIDE,
+    OP_NEGATE,
     OP_RETURN,
 } Op_code;
 
@@ -23,7 +28,9 @@ typedef struct Chunk
 {
     int count;
     int capacity;
-    uint8_t *code;
+
+    uint8_t *code;  /* store bytecode instructions and operands */
+
     int *lines;   /* to store line number of each instruction
                      for reporting errors */
 

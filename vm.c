@@ -18,6 +18,12 @@ run(void)
 {
     #define READ_BYTE() (*vm.ip++)
     #define READ_CONSTANT() (vm.chunk->constants.values[READ_BYTE()])
+    #define BINARY_OP(op) \
+        do { \
+            double b = pop(); \
+            double a = pop(); \
+            push(a op b); \
+        } while (false);
 
     for (;;) {
         uint8_t instruction;
@@ -47,6 +53,14 @@ run(void)
                 break;
             }
 
+            case OP_ADD:      BINARY_OP(+); break;
+            case OP_SUBTRACT: BINARY_OP(-); break;
+            case OP_MULTIPLY: BINARY_OP(*); break;
+            case OP_DIVIDE:   BINARY_OP(/); break;
+
+            /* Push back the negative value of stack */
+            case OP_NEGATE: push(-pop()); break;
+
             case OP_RETURN: {
                 print_value(pop());
                 printf("\n");
@@ -55,8 +69,9 @@ run(void)
         }
     }
 
-    #undef READ_CONSTANT
     #undef READ_BYTE
+    #undef READ_CONSTANT
+    #undef BINARY_OP
 }
 
 

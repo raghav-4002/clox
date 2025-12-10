@@ -45,7 +45,7 @@ write_chunk(Chunk *chunk, uint8_t byte, int line)
 
     /* Store the byte into the code array
         and line number into the line array */
-    chunk->code[chunk->count] = byte;
+    chunk->code[chunk->count]  = byte;
     chunk->lines[chunk->count] = line;
 
     chunk->count++;
@@ -55,11 +55,12 @@ write_chunk(Chunk *chunk, uint8_t byte, int line)
 /*
     Adds a new constant value in the chunk.
     Is a wrapper over the actual function 
-    `add_constant()`
+    `write_value_array()`
 */
 int
 add_constant(Chunk *chunk, Value value)
 {
     write_value_array(&chunk->constants, value);
-    return chunk->constants.count - 1;
+    return chunk->constants.count - 1; /* index of value just added,
+                                          will act as operand in bytecode */
 }

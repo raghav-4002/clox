@@ -16,6 +16,7 @@ init_value_array(Value_array *array)
 void
 write_value_array(Value_array *array, Value value)
 {
+    /* Grow array size if not enough space */
     if (array->capacity < array->count + 1) {
         int old_capacity = array->capacity;
         array->capacity  = GROW_CAPACITY(old_capacity);

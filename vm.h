@@ -16,10 +16,10 @@ typedef struct Vm
     /* 
        Instruction pointer; points to the
        instruction to be executed. Is a pointer 
-       as dereferencing a ptr is faster
-       than array index access
+       and not an index as dereferencing a ptr
+       is faster than array index access
     */
-    uint8_t *ip;   
+    uint8_t *ip;
 
     Value stack[STACK_MAX];
     Value *stack_top;
@@ -41,4 +41,4 @@ void push(Value value);
 Value pop();
 
 
-#endif // VN_H_
+#endif // VM_H_
